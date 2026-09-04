@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Make a quiz — Quizzer</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="topbar"><div class="wrap topbar-in">
+<a class="logo" href="/">QUIZZER</a>
+<nav class="topnav"><a href="/">Trending</a><a href="/create" class="btn-make">Make a quiz</a></nav>
+</div></header>
+<main class="wrap narrow">
+<h1>Make a quiz</h1>
+<p class="muted">2–8 questions, 2–4 options each, 2–4 results. Images are https links only. Nothing uploaded.</p>
+<form id="f">
+<label>Title<input name="title" maxlength="120" required placeholder="Which sandwich are you?"></label>
+<label>Description<textarea name="description" maxlength="280" rows="2" placeholder="Answer 4 questions, accept your fate."></textarea></label>
+<h2>Results (2–4)</h2>
+<div id="results"></div>
+<button type="button" id="addR" class="btn-ghost">+ result</button>
+<h2>Questions (2–8)</h2>
+<div id="qs"></div>
+<button type="button" id="addQ" class="btn-ghost">+ question</button>
+<input name="website" class="hp" tabindex="-1" autocomplete="off" placeholder="">
+<div id="err" class="err" hidden></div>
+<button class="btn-big" type="submit">Publish → get share link</button>
+</form>
+<div id="done" class="done" hidden>
+<h2>🎉 Live!</h2>
+<p>Share link:</p>
+<p><a id="share" href="#"></a></p>
+<button id="copy" class="btn-ghost">Copy link</button>
+<p class="muted">Edit link (save it, shown once):<br><span id="edit" class="mono"></span></p>
+</div>
+</main>
+<script src="/create.js"></script>
+</body>
+</html>
