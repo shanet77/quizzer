@@ -136,15 +136,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .stat span { font-size: 13.5px; color: var(--muted); }
 
-.section-t {
-  font-family: Georgia, serif;
-  font-weight: 500;
-  font-size: 23px;
-  margin: 26px 0 14px;
-  border: 0;
-  display: block;
-}
-
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
 .card {
   background: var(--card);

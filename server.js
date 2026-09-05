@@ -136,7 +136,6 @@ const createQuizTx = db.transaction((id, tokenHash, data) => {
     const qid = insertQuestion.run(id, q.text, qi).lastInsertRowid;
     for (const o of q.options) insertOption.run(qid, o.text, o.imageUrl, resultIds[o.resultIndex]);
   });
-  return resultIds;
 });
 
 const replaceQuizTx = db.transaction((id, data) => {
