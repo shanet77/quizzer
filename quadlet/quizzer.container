@@ -1,0 +1,27 @@
+[Unit]
+Description=Quizzer app
+After=network-online.target
+
+[Container]
+Image=localhost/quizzer:local
+ContainerName=quizzer
+
+Environment=NODE_ENV=production
+Environment=PORT=3000
+
+Volume=quizzer-data:/data
+
+Network=hoopnerd-edge
+PodmanArgs=--network-alias=quizzer
+
+PodmanArgs=--security-opt=no-new-privileges:true
+PodmanArgs=--cap-drop=ALL
+PodmanArgs=--read-only
+PodmanArgs=--tmpfs=/tmp
+PodmanArgs=--init
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target

@@ -1,6 +1,0 @@
-{$DOMAIN} {
-	reverse_proxy app:3000
-	log {
-		output discard
-	}
-}

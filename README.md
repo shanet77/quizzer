@@ -16,11 +16,23 @@ npm start
 # http://localhost:3000
 ```
 
-## Deploy (RackNerd + Forgejo)
+## Deploy (RackNerd + Forgejo, podman quadlet)
 
-1. On VPS: `git clone <forgejo-url> /opt/quizzer`, set secrets in Forgejo repo settings: `VPS_HOST`, `VPS_USER`, `SSH_KEY`, `DOMAIN`.
-2. Push to `main` — workflow SSHes in and runs `docker compose up -d --build`.
-3. DB lives in the `quizdata` volume at `/data/quizzer.db`. Back it up with a cron `sqlite3 .backup`.
+Caddy is owned by hoopnerd — quizzer is just an app on the shared `hoopnerd-edge` network.
+
+1. On VPS as `deployer`: `git clone <forgejo-url> ~/project/quizzer`. Secrets in Forgejo repo settings: `DEPLOY_HOST`, `DEPLOY_PORT`, `DEPLOY_USER`, `DEPLOY_PATH` (= repo path), `DEPLOY_SSH_KEY`, `DEPLOY_HOST_KEY`.
+2. In hoopnerd, add `caddy/sites/quizzer.caddy` (see below) and reload `hoopnerd-caddy`.
+3. Push to `main` — workflow builds `localhost/quizzer:local`, links `quadlet/*` into `~/.config/containers/systemd`, restarts `quizzer.service`.
+4. DB lives in the `quizzer-data` volume at `/data/quizzer.db`. Back it up with a cron `sqlite3 .backup`.
+
+```caddy
+<domain> {
+	import security_headers
+	reverse_proxy quizzer:3000
+}
+```
+
+Migrating from the old docker-compose deploy: copy the sqlite file out of the old `quizdata` docker volume into the new podman volume once (`podman volume export/import` or via a temp container), then retire the compose stack.
 
 ## API
 
