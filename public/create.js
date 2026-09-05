@@ -23,7 +23,7 @@ function questionBlock(i) {
 function optionBlock() {
   const d = document.createElement('div');
   d.className = 'oblock';
-  d.innerHTML = `<input data-o="text" maxlength="80" placeholder="Option text" required><input data-o="imageUrl" placeholder="https://… image (optional)"><label>→ result <select data-o="resultIndex"></select></label>`;
+  d.innerHTML = `<input data-o="text" maxlength="80" placeholder="Option text" required><input data-o="imageUrl" placeholder="https://… image (optional)"><label>Points to result <select data-o="resultIndex"></select></label>`;
   return d;
 }
 function refreshLabels() {
