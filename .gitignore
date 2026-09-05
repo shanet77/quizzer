@@ -1,3 +1,5 @@
 node_modules/
 quizzer.db*
 .env
+.forgejo/
+quadlet/
