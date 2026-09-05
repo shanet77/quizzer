@@ -35,7 +35,7 @@ function renderResult() {
   }
   fetch(`/api/quizzes/${encodeURIComponent(id)}/take`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ resultId: best.id }) }).catch(()=>{});
   app.innerHTML = `<p class="kicker">Your result</p>
-  <div class="result"><div class="big">${best.imageUrl ? `<img class="qimg" src="${esc(best.imageUrl)}">` : '✳'}</div>
+  <div class="result">${best.imageUrl ? `<img class="qimg" src="${esc(best.imageUrl)}">` : `<div class="big">✳</div>`}
   <h1>You are: ${esc(best.title)}</h1>
   <p>${esc(best.description)}</p>
   <div class="share-row"><button class="btn-ghost" id="cp">Copy link</button><a class="btn-ghost" href="/create">Make your own</a></div>

@@ -4,13 +4,15 @@ const Q = document.getElementById('qs');
 function resultBlock(i) {
   const d = document.createElement('div');
   d.className = 'rblock';
-  d.innerHTML = `<strong>Result ${i+1}</strong><input data-r="title" maxlength="80" placeholder="e.g. Chaotic Raccoon" required><textarea data-r="description" maxlength="280" rows="2" placeholder="You hoard snacks and drama."></textarea><input data-r="imageUrl" placeholder="https://… image (optional)">`;
+  d.innerHTML = `<strong>Result ${i+1}</strong><input data-r="title" maxlength="80" placeholder="e.g. Chaotic Raccoon" required><textarea data-r="description" maxlength="280" rows="2" placeholder="You hoard snacks and drama."></textarea><input data-r="imageUrl" placeholder="https://… image (optional)"><button type="button" class="btn-ghost" data-del>✕ remove</button>`;
+  d.querySelector('[data-del]').onclick = () => { if (R.children.length > 1) { d.remove(); refreshLabels(); } };
   return d;
 }
 function questionBlock(i) {
   const d = document.createElement('div');
   d.className = 'qblock';
-  d.innerHTML = `<strong>Question ${i+1}</strong><input data-q="text" maxlength="200" placeholder="Pick a Friday night…" required><div data-opts></div><button type="button" class="btn-ghost" data-addopt>+ option</button>`;
+  d.innerHTML = `<strong>Question ${i+1}</strong><input data-q="text" maxlength="200" placeholder="Pick a Friday night…" required><div data-opts></div><button type="button" class="btn-ghost" data-addopt>+ option</button><button type="button" class="btn-ghost" data-del>✕ remove question</button>`;
+  d.querySelector('[data-del]').onclick = () => { if (Q.children.length > 1) { d.remove(); refreshLabels(); } };
   const holder = d.querySelector('[data-opts]');
   holder.append(optionBlock(), optionBlock(), optionBlock());
   d.querySelector('[data-addopt]').onclick = () => {
@@ -23,7 +25,8 @@ function questionBlock(i) {
 function optionBlock() {
   const d = document.createElement('div');
   d.className = 'oblock';
-  d.innerHTML = `<input data-o="text" maxlength="80" placeholder="Option text" required><input data-o="imageUrl" placeholder="https://… image (optional)"><label>Points to result <select data-o="resultIndex"></select></label>`;
+  d.innerHTML = `<input data-o="text" maxlength="80" placeholder="Option text" required><input data-o="imageUrl" placeholder="https://… image (optional)"><label>Points to result <select data-o="resultIndex"></select></label><button type="button" class="btn-ghost" data-delo>✕</button>`;
+  d.querySelector('[data-delo]').onclick = () => { if (d.parentElement.children.length > 1) d.remove(); };
   return d;
 }
 function refreshLabels() {

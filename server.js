@@ -85,10 +85,10 @@ function validatePayload(body) {
     if (body.description.trim() !== '' && !d) return { error: 'Description max 280 chars' };
     description = d || '';
   }
-  if (!Array.isArray(body.results) || body.results.length < 2 || body.results.length > 4)
-    return { error: 'Need 2-4 results' };
-  if (!Array.isArray(body.questions) || body.questions.length < 2 || body.questions.length > 8)
-    return { error: 'Need 2-8 questions' };
+  if (!Array.isArray(body.results) || body.results.length < 1 || body.results.length > 4)
+    return { error: 'Need 1-4 results' };
+  if (!Array.isArray(body.questions) || body.questions.length < 1 || body.questions.length > 8)
+    return { error: 'Need 1-8 questions' };
   const results = [];
   for (const r of body.results) {
     const rt = str(r.title, 2, 80);
@@ -106,8 +106,8 @@ function validatePayload(body) {
   for (const q of body.questions) {
     const qt = str(q.text, 3, 200);
     if (!qt) return { error: 'Each question needs 3-200 chars' };
-    if (!Array.isArray(q.options) || q.options.length < 2 || q.options.length > 4)
-      return { error: 'Each question needs 2-4 options' };
+    if (!Array.isArray(q.options) || q.options.length < 1 || q.options.length > 4)
+      return { error: 'Each question needs 1-4 options' };
     const opts = [];
     for (const o of q.options) {
       const ot = str(o.text, 1, 80);

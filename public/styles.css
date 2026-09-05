@@ -283,6 +283,8 @@ select { padding: 8px; border: 1.5px solid var(--line); border-radius: 10px; fon
 .share-row { display: flex; gap: 8px; justify-content: center; margin-top: 14px; flex-wrap: wrap; }
 .muted { color: var(--muted); }
 
+#app .kicker { font-size: 15px; margin: 22px 0 2px; }
+
 main.wrap { padding-bottom: 12px; }
 
 @media (max-width: 640px) {
